@@ -1,0 +1,5 @@
+{
+  "title": "[Task] {title}",
+  "body": "## Description\n{description}\n\n## Technical Details\n- \n\n## Estimated Effort\n- \n\n## Verification\n- [ ] \n\n## Related\n- ",
+  "labels": []
+}
