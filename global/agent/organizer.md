@@ -44,7 +44,7 @@ Create a summary of created issues including:
 - Tasks: `[Task] <title>`
 
 ## Constraints
-- Use gh cli commands (aliased for efficiency)
+- Use gh cli commands
 - Create issues sequentially to avoid rate limits
 - Include all relevant details from the plan in the issue body
 - Set appropriate labels if supported by the template
