@@ -1,0 +1,30 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "minimax/minimax-m2.7",
+  "agent": {
+    "pre-planner": {
+      "model": "ollama/qwen3-7b"
+    },
+    "organizer": {
+      "model": "ollama/qwen3-7b"
+    },
+    "planner": {
+      "model": "minimax/minimax-m2.7"
+    }
+  },
+  "provider": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama Local",
+      "options": {
+        "baseURL": "http://localhost:11434/v1"
+      },
+      "models": {
+        "qwen3-7b": {
+          "name": "Qwen3 Coder Ollama",
+          "tools": true
+        }
+      }
+    }
+  }
+}
