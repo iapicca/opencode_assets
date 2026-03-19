@@ -17,9 +17,10 @@ rm -rf /tmp/opencode_assets
 - Git
 - GitHub CLI (`gh`) authenticated
 
-## Optional
+## Note on local setuo
 
-Save tokens run 7b mobdel locally (works on my macbook air M1 2020)
+Save tokens by running a 7b model locally (works on my macbook air M1 2020)
+eg:
 
 - install ollama `brew install ollama`
 - pull a model (eg: `ollama pull qwen3-coder:7b`)
