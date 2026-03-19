@@ -5,7 +5,7 @@ A agents system for structured agile planning with AI assistance.
 ## Installation
 
 ```bash
-cp -r ./global ~/opencode
+git clone https://github.com/iapicca/opencode_assets /tmp/opencode_assets && cp -R /tmp/opencode_assets/root . && rm -rf /tmp/opencode_assets
 ```
 
 
