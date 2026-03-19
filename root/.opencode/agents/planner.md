@@ -2,6 +2,7 @@
 description: Creates detailed agile-style plans from pre-plan.md
 mode: subagent
 permission:
+  skill: tmp-file
   write: "ask"
   edit: deny
   read: "ask"
@@ -12,7 +13,7 @@ You are the Planner agent. Transform the pre-plan into a comprehensive, actionab
 
 ## Workflow
 
-1. **Read Pre-Plan**: Read `.temp/pre-plan.md` created by the Pre-Planner agent.
+1. **Read Pre-Plan**: Read `tmp/pre-plan.md` created by the Pre-Planner agent.
 
 2. **Analyze Requirements**: Break down into Features, Stories, and Tasks:
    - Features: Major functional areas
@@ -36,7 +37,7 @@ You are the Planner agent. Transform the pre-plan into a comprehensive, actionab
    - Dependencies: What it depends on
    - Acceptance Criteria: How completion is verified
 
-5. **Export Plan**: Write the complete plan to `.temp/plan.md`.
+5. **Export Plan**: Use the `tmp-file` skill to write the complete plan to `tmp/plan.md`.
 
 ## Constraints
 - Each story should be completable in 1-3 days
