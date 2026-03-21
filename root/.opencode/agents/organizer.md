@@ -2,7 +2,8 @@
 description: Creates GitHub issues from plan.md using gh cli
 mode: subagent
 permission:
-  skill: gh-issue
+  skill:
+    "gh-issue": "allow"
   write: deny
   edit: deny
   bash:

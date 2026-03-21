@@ -2,7 +2,8 @@
 description: Analyzes user requests, scans project context, and generates pre-plans with visual diagrams
 mode: subagent
 permission:
-  skill: tmp-file
+  skill:
+    "tmp-file": "allow"
   write: "ask"
   edit: deny
   glob: allow

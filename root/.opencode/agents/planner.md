@@ -2,7 +2,8 @@
 description: Creates detailed agile-style plans from pre-plan.md
 mode: subagent
 permission:
-  skill: tmp-file
+  skill:
+    "tmp-file": "allow"
   write: "ask"
   edit: deny
   read: "ask"
