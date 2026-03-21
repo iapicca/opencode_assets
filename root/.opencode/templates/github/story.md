@@ -17,7 +17,7 @@ title: "[Story] <Story Name>"
 
 ---
 
-## 👤 User Story
+## User Story
 **Format:**
 - **As a:** [User Persona]
 - **I want to:** [Action]

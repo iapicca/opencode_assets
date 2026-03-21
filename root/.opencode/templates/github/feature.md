@@ -17,7 +17,7 @@ title: "[FEATURE] <Feature Name>"
 
 ---
 
-## 👤 User Story
+## User Story
 **Format:**
 - **As a:** [User Persona]
 - **I want to:** [Action]
@@ -59,7 +59,6 @@ title: "[FEATURE] <Feature Name>"
 - [ ] Reviewed for performance/security
 
 ---
-
 
 ### **Related Stories:** 
 

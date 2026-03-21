@@ -1,7 +1,7 @@
 ---
-name: "<Feature Name>"
-about: "Detailed specification for a new feature within aFeature/Story/Issue hierarchy."
-title: "[FEATURE] <Feature Name>"
+name: "<Task Name>"
+about: "Detailed specification for a new task within a Feature/Story/Issue hierarchy."
+title: "[Task] <Task Name>"
 ---
 
 ## Metadata
@@ -17,7 +17,7 @@ title: "[FEATURE] <Feature Name>"
 
 ---
 
-## 👤 User Story
+## User Story
 **Format:**
 - **As a:** [User Persona]
 - **I want to:** [Action]
