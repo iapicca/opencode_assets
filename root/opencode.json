@@ -10,6 +10,15 @@
     },
     "planner": {
       "model": "minimax/MiniMax-M2.7"
+    },
+    "implementation-planner": {
+      "model": "ollama-cloud/qwen3-coder-next"
+    },
+    "pr-writer": {
+      "model": "ollama-cloud/qwen3-coder-next"
+    },
+    "coder": {
+      "model": "minimax/MiniMax-M2.7"
     }
   },
   "provider": {
