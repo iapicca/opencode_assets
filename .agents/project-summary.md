@@ -80,13 +80,13 @@ The model alias `qwen3-7b` maps to a saved Ollama session (`/save qwen3-7b`).
 
 ### `gh-issue`
 - **Trigger**: when creating GitHub issues from a structured plan.
-- **Bash permission**: only `gh *` is allowed; all other bash is denied.
+- **Convention**: only runs `gh *` commands; no arbitrary bash.
 - **Workflow**: detect repo → load templates → create issues with `[Feature]`/`[Story]`/`[Task]` prefixes.
 - **Requirement**: `gh` CLI must be authenticated.
 
 ### `tmp-file`
 - **Trigger**: when an agent needs to write a temporary `.md` file to `./tmp`.
-- **Bash permission**: only `mkdir *` is allowed; all other bash is denied.
+- **Convention**: only runs `mkdir *` commands; all other bash is avoided.
 - **Workflow**: `mkdir -p ./tmp` → write file.
 
 ---
@@ -142,15 +142,14 @@ permission:
 
 ### Skill YAML Frontmatter
 
+Supported attributes: `name`, `description`, `argument-hint`, `compatibility`, `disable-model-invocation`, `license`, `metadata`, `user-invocable`.
+
+> **Note**: `permission` is **not** supported in skill files. Bash and write restrictions belong in the calling agent's frontmatter, not in the skill.
+
 ```yaml
 ---
 name: <skill-name>
 description: <what the skill does>
-permission:
-  write: <allow|deny>
-  bash:
-    "<command pattern>": <allow|deny>
-    "*": <deny>
 ---
 ```
 

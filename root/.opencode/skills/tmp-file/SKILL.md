@@ -1,17 +1,14 @@
 ---
 name: tmp-file
 description: Creates .md files in ./tmp folder.
-permission:
-  write: allow
-  bash:
-    "mkdir *": allow
-    "*": deny
 ---
 
 ## What I do
 
 - Create the `./tmp` directory if it doesn't exist.
 - Generate and write Markdown (`.md`) files into the `./tmp` folder.
+
+> **Note**: Only `mkdir *` commands and writes to `./tmp` are permitted. Do not run arbitrary bash commands.
 
 ## When to use me
 

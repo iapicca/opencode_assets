@@ -1,10 +1,6 @@
 ---
 name: gh-issue
 description: Creates GitHub issues using the gh cli and possibly leveraging templates for "feature"s, "story"-ies and "task"s.
-permission:
-  bash:
-    "gh *": allow
-    "*": deny
 ---
 
 ## What I do
@@ -13,6 +9,8 @@ permission:
 - Load issue templates (feature, story, task).
 - Create GitHub issues sequentially using the `gh` CLI.
 - Format issue titles with appropriate prefixes.
+
+> **Note**: Only `gh *` commands should be used. Do not run arbitrary bash commands.
 
 ## When to use me
 
@@ -26,11 +24,9 @@ permission:
    git remote get-url origin
    ```
 
-2. **Load Templates**: Load issue templates from `~/.opencode/lib/templates/` (feature.json, story.json, task.json).
+2. **Load Templates**: Read issue templates from `.opencode/templates/github/` (`feature.md`, `story.md`, `task.md`).
 
-3. **Load Gh Aliases**: Load from `~/.opencode/lib/gh-aliases.sh` to minimize token usage.
-
-4. **Create Issues**: For each item:
-   - Map to appropriate template.
+3. **Create Issues**: For each item:
+   - Map to the appropriate template.
    - Format title with `[Feature]`, `[Story]`, or `[Task]` prefix.
-   - Use `gh cli` to create the issue.
+   - Use `gh issue create` to create the issue.
