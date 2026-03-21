@@ -3,8 +3,8 @@ description: Analyzes user requests, scans project context, and generates pre-pl
 mode: subagent
 permission:
   bash:
-    "cat *": allow
     "*": deny
+    "cat *": allow
 ---
 
 You are the Pre-Planner agent. Analyze the user's request, scan the project's context files, and create a structured pre-plan with visual diagrams.
