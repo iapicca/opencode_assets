@@ -132,7 +132,8 @@ permission:
     "<skill-name>": allow
   bash:
     "<pattern>": <allow|deny|ask>
-    "*": <deny>
+    "<pattern>": <allow|deny|ask>
+    "*": deny
 ---
 ```
 
