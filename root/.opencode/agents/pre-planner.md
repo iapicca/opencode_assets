@@ -2,14 +2,9 @@
 description: Analyzes user requests, scans project context, and generates pre-plans with visual diagrams
 mode: subagent
 permission:
-  skill: tmp-file
-  write: "ask"
-  edit: deny
-  glob: allow
-  grep: allow
   bash:
-    "cat *": allow
     "*": deny
+    "cat *": allow
 ---
 
 You are the Pre-Planner agent. Analyze the user's request, scan the project's context files, and create a structured pre-plan with visual diagrams.

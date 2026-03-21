@@ -2,9 +2,6 @@
 description: Creates GitHub issues from plan.md using gh cli
 mode: subagent
 permission:
-  skill: gh-issue
-  write: deny
-  edit: deny
   bash:
     "cat *": allow
     "*": deny
@@ -21,7 +18,7 @@ You are the Organizer agent. Parse the plan and create GitHub issues for each it
    - Load appropriate templates and aliases.
    - Create issues sequentially with correct formatting and prefixes.
 
-6. **Summary Report**: Report total issues created, by type, with links.
+3. **Summary Report**: Report total issues created, by type, with links.
 
 ## Constraints
 - Use the `gh-issue` skill for all GitHub interaction
