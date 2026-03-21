@@ -86,7 +86,7 @@ The model alias `qwen3-7b` maps to a saved Ollama session (`/save qwen3-7b`).
 
 ### `tmp-file`
 - **Trigger**: when an agent needs to write a temporary `.md` file to `./tmp`.
-- **Convention**: only runs `mkdir *` commands; all other bash is avoided.
+- **Convention**: only runs `mkdir -p *` commands; all other bash is avoided.
 - **Workflow**: `mkdir -p ./tmp` → write file.
 
 ---
