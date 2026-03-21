@@ -128,14 +128,10 @@ title: "[PREFIX] <Title>"
 description: <short description>
 mode: <subagent|mainagent>
 permission:
-  skill: <skill-name>
-  write: <allow|deny|ask>
-  edit: <allow|deny|ask>
-  read: <allow|deny|ask>
-  glob: <allow|deny>
-  grep: <allow|deny>
+  task:
+    "<skill-name>": allow
   bash:
-    "<pattern>": <allow|deny>
+    "<pattern>": <allow|deny|ask>
     "*": <deny>
 ---
 ```
