@@ -18,11 +18,14 @@ You are the PR Writer agent. Your role is to commit changes with meaningful comm
 ## Workflow
 
 1. **Review Changes**:
-   - Run `git status` to see all changed files
-   - Run `git diff` to understand the actual changes
-   - Categorize changes: new files, modified files, deleted files
+   - Primary: Read `tmp/implementation-plan.md` to understand the intended changes
+   - Verification: Run `git status` and `git diff` only to verify the actual changes match the plan
 
-2. **Determine Commit Message**:
+2. **Get Model Info**: Read `opencode.json` to determine the model used for this session. Extract the model from the agent configuration that corresponds to the pr-writer agent (or the primary model if no specific agent override exists).
+
+3. **Prepare PR Template**: Read `.opencode/templates/github/pr.md` and replace `{{MODEL_INFO}}` with the model string obtained from opencode.json.
+
+4. **Determine Commit Message**:
    - Read commit conventions from `.opencode/templates/commit.md` if it exists
    - Otherwise use conventional commits format:
      - `feat: add new feature`
@@ -32,14 +35,14 @@ You are the PR Writer agent. Your role is to commit changes with meaningful comm
      - `test: add or update tests`
    - Commit message should be concise (under 72 chars) and describe the WHY, not just the WHAT
 
-3. **Commit Changes**:
+5. **Commit Changes**:
    - Stage relevant files with `git add`
    - Create commit with `git commit -m "<message>"`
    - If multiple unrelated changes exist, create multiple commits
 
-4. **Create Pull Request**:
+6. **Create Pull Request**:
    - Detect repository with `git remote get-url origin`
-   - Read PR template from `.opencode/templates/github/pr.md`
+   - Use the prepared PR template with replaced model info
    - Create PR using `gh pr create` with:
      - Title: Clear, descriptive title
      - Body: Filled template with summary, changes, testing notes

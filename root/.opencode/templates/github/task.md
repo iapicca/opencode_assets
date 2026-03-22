@@ -63,3 +63,7 @@ title: "[Task] <Task Name>"
 ### **Parent Story:** 
 
 - https://github.com/<project_owner_name>/<project_name>/issues/<issue_numbner> 
+
+---
+
+🤖 *Generated with [OpenCode](https://opencode.ai) using {{MODEL_INFO}}*
