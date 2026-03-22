@@ -23,12 +23,16 @@ description: Creates pull requests using gh CLI with project templates
 
 2. **Load Template**: Read `.opencode/templates/github/pr.md` for the template structure
 
-3. **Prepare PR Details**:
+3. **Read Implementation Plan**: If `tmp/implementation-plan.md` exists, extract:
+   - **Target Branch** from `## Branch Strategy` section
+   - This is the `--base` for `gh pr create`
+
+4. **Prepare PR Details**:
    - Title: Clear, descriptive title (feature/fix name)
    - Body: Fill template with changes, testing notes, screenshots if relevant
-   - Base: Usually `main` or `master` (detect from existing PRs or use default)
+   - Base: Target Branch from implementation plan (NOT `main` directly — feature branches target main)
 
-4. **Create PR**: Use `gh pr create`:
+5. **Create PR**: Use `gh pr create`:
    ```bash
-   gh pr create --title "<title>" --body "<body>" --base <base-branch>
+   gh pr create --title "<title>" --body "<body>" --base <target-branch>
    ```

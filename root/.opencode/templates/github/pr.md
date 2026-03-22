@@ -15,6 +15,12 @@ title: "[PR] <PR Title>"
 - [ ] Change 1: <description>
 - [ ] Change 2: <description>
 
+## Branch Strategy
+
+- **Working Branch:** `<branch-name>`
+- **Target Branch (base):** `<parent-branch-name>`
+- **PR targets:** `<parent-branch-name>`
+
 ## Testing
 
 <!-- How was this tested? -->
@@ -34,6 +40,7 @@ Fixes #<issue_number>
 - [ ] Code follows project style guidelines
 - [ ] Self-reviewed before requesting review
 - [ ] Documentation updated (if needed)
+- [ ] All child issues/PRs are resolved before merging
 
 ---
 

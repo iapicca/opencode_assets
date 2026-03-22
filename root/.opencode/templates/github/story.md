@@ -7,6 +7,10 @@ title: "[Story] <Story Name>"
 ## Metadata
 - **Target Component:** [e.g., Frontend, API, Database]
 - **LLM Context Hint:** []
+- **Issue Type:** [STORY]
+- **Working Branch:** `story/<issue-number>-<slug>`
+- **Target Branch:** `feature/<parent-issue-number>-<slug>`
+- **Parent Branch:** `feature/<parent-issue-number>-<slug>`
 ---
 
 ## Executive Summary

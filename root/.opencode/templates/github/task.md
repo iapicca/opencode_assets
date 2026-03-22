@@ -7,6 +7,10 @@ title: "[Task] <Task Name>"
 ## Metadata
 - **Target Component:** [e.g., Frontend, API, Database]
 - **LLM Context Hint:** []
+- **Issue Type:** [TASK]
+- **Working Branch:** `task/<issue-number>-<slug>`
+- **Target Branch:** `story/<parent-issue-number>-<slug>`
+- **Parent Branch:** `feature/<grandparent-issue-number>-<slug>`
 ---
 
 ## Executive Summary

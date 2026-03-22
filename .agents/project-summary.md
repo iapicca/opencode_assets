@@ -38,7 +38,7 @@ root/                                    # Installation payload: copied to user'
     │   ├── pre-planner.md               # Subagent: context scan + pre-plan generation
     │   ├── planner.md                   # Subagent: agile plan generation
     │   ├── organizer.md                 # Subagent: GitHub issue creation
-    │   ├── implementation-planner.md    # Subagent: creates implementation-plan.md
+    │   ├── implementation-planner.md    # Subagent: reads task → writes tmp/implementation-plan.md
     │   ├── pr-writer.md                 # Subagent: commits changes + creates PR
     │   └── coder.md                     # Primary agent: orchestrates implementation workflow
     ├── skills/                          # Skill definitions (installed to .opencode/skills/)
@@ -56,6 +56,48 @@ tmp/                                     # Scratch space (gitignored); runtime a
 ```
 
 **Key distinction**: `.agents/` contains documentation for AI context only and is never installed. `root/.opencode/` contains the actual agents, skills, and templates that get copied to the user's project root during installation.
+
+> **Note on agent naming**: When the Coder Pipeline references `implementation-planner`, it means the agent defined at `root/.opencode/agents/implementation-planner.md`. That agent's output is always written to `tmp/implementation-plan.md` — the plan is not a separate source file.
+
+---
+
+## Branch Strategy
+
+```
+main/master
+└── feature/<feature-issue>-<slug>          # Branched from main
+    └── story/<story-issue>-<slug>          # Branched from feature
+        └── task/<task-issue>-<slug>        # Branched from story
+```
+
+### Rules
+
+1. **Never create PRs targeting `main/master` directly** — only feature branches merge into main
+2. **Every Feature/Epic** has its own branch based on `main/master`
+3. **Every Story** has its own branch based on its parent Feature's branch
+4. **Every Task's PR** targets the parent Story's branch
+5. **Story branch merges to Feature branch** only when all child Tasks are resolved (no open PRs/issues)
+6. **Feature branch merges to main/master** only when all child Stories are resolved (upon user approval)
+
+### Branch Naming Convention
+
+| Issue Type | Working Branch | Target Branch |
+|---|---|---|
+| Feature | `feature/<issue>-<slug>` | `main` |
+| Story | `story/<issue>-<slug>` | `feature/<parent-issue>-<slug>` |
+| Task | `task/<issue>-<slug>` | `story/<parent-issue>-<slug>` |
+
+### Implementation Flow
+
+```mermaid
+flowchart TD
+    T([Task Issue])
+    IP["implementation-planner\ninfers target branch from parent issues\nwrites tmp/implementation-plan.md"]
+    C["coder\ncreates working branch, implements, commits"]
+    PR["pr-writer\ncreates PR targeting parent branch"]
+
+    T --> IP --> C --> PR
+```
 
 ---
 
@@ -81,9 +123,9 @@ All agents are `mode: subagent`. They are invoked by the primary agent via the T
 flowchart TD
     U([User: tackle task <issue>])
     C["coder (primary)\nreceives task, orchestrates workflow"]
-    IP["implementation-planner\nreads task + .opencode/** + .agents/**\nexplores project files\nwrites tmp/implementation-plan.md"]
-    C2["coder\nwrites code following implementation-plan.md"]
-    PR["pr-writer\nreads implementation-plan.md first\nexecutes git status/diff for verification\nreads commit/PR conventions\ncommits with meaningful message\ncreates PR via gh"]
+    IP["implementation-planner\ninfers target branch from parent issues\nreads task + .opencode/** + .agents/**\nexplores project files\nwrites tmp/implementation-plan.md"]
+    C2["coder\ncreates working branch from parent\nwrites code following implementation-plan.md"]
+    PR["pr-writer\ncreates PR targeting parent branch\n(base = target branch from plan)"]
 
     U --> C --> IP --> C2 --> PR
 ```
