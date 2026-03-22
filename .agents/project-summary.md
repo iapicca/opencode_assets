@@ -94,17 +94,17 @@ The `coder` agent is the primary agent users interact with for implementation ta
 
 ## Model Assignments
 
-| Agent                | Model             | Reason                              |
-|----------------------|-------------------|--------------------------------------|
-| pre-planner          | ollama/qwen3-7b   | Lightweight; context scan only       |
+| Agent                | Model               | Reason                              |
+|----------------------|---------------------|--------------------------------------|
+| pre-planner          | opencode/big-pickle | Lightweight; context scan only       |
 | planner              | minimax/minimax-m2.7 | Needs strong structured output    |
-| organizer            | ollama/qwen3-7b   | Lightweight; template formatting     |
-| implementation-planner| ollama/qwen3-7b   | Lightweight; follows implementation-plan.md |
-| pr-writer            | ollama/qwen3-7b   | Lightweight; commit formatting       |
+| organizer            | opencode/big-pickle | Lightweight; template formatting     |
+| implementation-planner| opencode/big-pickle | Lightweight; follows implementation-plan.md |
+| pr-writer            | opencode/big-pickle | Lightweight; commit formatting       |
 | coder                | minimax/minimax-m2.7 | Primary agent; orchestration     |
 
-Ollama provider is configured at `http://localhost:11434/v1` via `@ai-sdk/openai-compatible`.
-The model alias `qwen3-7b` maps to a saved Ollama session (`/save qwen3-7b`).
+OpenCode Zen provider is configured at `https://opencode.ai/zen/v1/chat/completions` via `@ai-sdk/openai-compatible`.
+The model `big-pickle` is a free stealth model provided by OpenCode Zen.
 
 ---
 
@@ -237,7 +237,7 @@ When analyzing project context (pre-planner):
 - Git repository with a configured remote (`origin`)
 - `gh` CLI authenticated (`gh auth status`)
 - Git user configured (`git config user.name` and `git config user.email`)
-- Ollama running locally with `qwen3-7b` model saved (`ollama run qwen3-coder:7b` → `/save qwen3-7b`)
+- OpenCode Zen account with API key for `big-pickle` model
 
 ---
 

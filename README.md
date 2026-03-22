@@ -17,37 +17,24 @@ rm -rf /tmp/opencode_assets
 - Git
 - GitHub CLI (`gh`) authenticated
 
-## Note on local setuo
+## Note on OpenCode Zen
 
-Save tokens by running a 7b model locally (works on my macbook air M1 2020)
-eg:
+Use Big Pickle (free) from OpenCode Zen for lightweight subagent tasks to save tokens.
 
-- install ollama `brew install ollama`
-- pull a model (eg: `ollama pull qwen3-coder:7b`)
-- run `ollama run qwen3-coder:7b` and save
-```bash
-/save qwen3-7b
-/bye
-```
-- add to opencode
+- Sign in at [OpenCode Zen](https://opencode.ai/auth) and get your API key
+- Run `/connect` in the TUI, select OpenCode Zen, and paste your API key
+- Add to opencode:
 ```json
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "ollama/qwen3-7b",
-  "provider": {
-    "ollama": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "Ollama Local",
-      "options": {
-        "baseURL": "http://localhost:11434/v1"
-      },
-      "models": {
-        "qwen3-7b": {
-          "name": "Qwen3 Coder Ollama",
-          "tools": true
-        }
-      }
-    }
+  "model": "minimax/MiniMax-M2.7",
+  "agent": {
+    "pre-planner": { "model": "opencode/big-pickle" },
+    "organizer": { "model": "opencode/big-pickle" },
+    "planner": { "model": "minimax/MiniMax-M2.7" },
+    "implementation-planner": { "model": "opencode/big-pickle" },
+    "pr-writer": { "model": "opencode/big-pickle" },
+    "coder": { "model": "minimax/MiniMax-M2.7" }
   }
 }
 ```

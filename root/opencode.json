@@ -3,38 +3,22 @@
   "model": "minimax/MiniMax-M2.7",
   "agent": {
     "pre-planner": {
-      "model": "ollama/qwen3-7b"
+      "model": "opencode/big-pickle"
     },
     "organizer": {
-      "model": "ollama/qwen3-7b"
+      "model": "opencode/big-pickle"
     },
     "planner": {
       "model": "minimax/MiniMax-M2.7"
     },
     "implementation-planner": {
-      "model": "ollama/qwen3-7b"
+      "model": "opencode/big-pickle"
     },
     "pr-writer": {
-      "model": "ollama/qwen3-7b"
+      "model": "opencode/big-pickle"
     },
     "coder": {
       "model": "minimax/MiniMax-M2.7"
-    }
-  },
-  "provider": {
-    "ollama": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "Ollama Local",
-      "options": {
-        "baseURL": "http://localhost:11434/v1"
-      },
-      "models": {
-        "qwen3-7b": {
-          "id": "qwen3-7b",
-          "name": "Qwen3 Coder Ollama",
-          "tools": true
-        }
-      }
     }
   }
 }
