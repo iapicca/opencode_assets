@@ -26,28 +26,40 @@ Consumers install it by copying the `root/` directory into their working project
 ## Directory Structure
 
 ```
-root/
+.agents/                                 # Agent-facing documentation for AI context (NOT installed)
+│   ├── opencode-agent-summary.md        # OpenCode agent system reference
+│   ├── opencode-skills-summary.md       # OpenCode skills system reference
+│   └── project-summary.md              # This file: project conventions and pipeline docs
+│
+root/                                    # Installation payload: copied to user's project root
 ├── opencode.json                        # OpenCode CLI config (models, providers, agent overrides)
 └── .opencode/
-    ├── agents/
+    ├── agents/                          # Agent definitions (installed to .opencode/agents/)
     │   ├── pre-planner.md               # Subagent: context scan + pre-plan generation
     │   ├── planner.md                   # Subagent: agile plan generation
-    │   └── organizer.md                 # Subagent: GitHub issue creation
-    ├── skills/
+    │   ├── organizer.md                 # Subagent: GitHub issue creation
+    │   ├── implementation-planner.md    # Subagent: creates implementation-plan.md
+    │   ├── pr-writer.md                 # Subagent: commits changes + creates PR
+    │   └── coder.md                     # Primary agent: orchestrates implementation workflow
+    ├── skills/                          # Skill definitions (installed to .opencode/skills/)
     │   ├── gh-issue/SKILL.md            # Skill: creates GitHub issues via gh CLI
-    │   └── tmp-file/SKILL.md            # Skill: writes .md files to ./tmp
+    │   ├── tmp-file/SKILL.md            # Skill: writes .md files to ./tmp
+    │   ├── git-commit/SKILL.md          # Skill: creates meaningful git commits
+    │   └── pr-create/SKILL.md           # Skill: creates PRs via gh CLI
     └── templates/github/
         ├── feature.md                   # GitHub issue template: [FEATURE]
         ├── story.md                     # GitHub issue template: [Story]
-        └── task.md                      # GitHub issue template: [Task]
+        ├── task.md                      # GitHub issue template: [Task]
+        └── pr.md                        # PR description template
 
 tmp/                                     # Scratch space (gitignored); runtime agents write here
-.agents/                                 # Agent-facing documentation (this directory)
 ```
+
+**Key distinction**: `.agents/` contains documentation for AI context only and is never installed. `root/.opencode/` contains the actual agents, skills, and templates that get copied to the user's project root during installation.
 
 ---
 
-## Agent Pipeline
+## Agent Pipeline (Planning Flow)
 
 ```mermaid
 flowchart TD
@@ -60,6 +72,23 @@ flowchart TD
 ```
 
 All agents are `mode: subagent`. They are invoked by the primary agent via the Task tool or via `@mention`.
+
+---
+
+## Coder Agent Pipeline (Implementation Flow)
+
+```mermaid
+flowchart TD
+    U([User: tackle task <issue>])
+    C["coder (primary)\nreceives task, orchestrates workflow"]
+    IP["implementation-planner\nreads task + .opencode/** + .agents/**\nexplores project files\nwrites tmp/implementation-plan.md"]
+    C2["coder\nwrites code following implementation-plan.md"]
+    PR["pr-writer\nreads commit/PR conventions\ncommits with meaningful message\ncreates PR via gh"]
+
+    U --> C --> IP --> C2 --> PR
+```
+
+The `coder` agent is the primary agent users interact with for implementation tasks. It delegates to `implementation-planner` for planning and `pr-writer` for finalization.
 
 ---
 
@@ -88,6 +117,18 @@ The model alias `qwen3-7b` maps to a saved Ollama session (`/save qwen3-7b`).
 - **Trigger**: when an agent needs to write a temporary `.md` file to `./tmp`.
 - **Convention**: only runs `mkdir -p *` commands; all other bash is avoided.
 - **Workflow**: `mkdir -p ./tmp` → write file.
+
+### `git-commit`
+- **Trigger**: when committing changes with a meaningful message.
+- **Convention**: follows commit message format in `.opencode/templates/commit.md` or uses conventional commits.
+- **Workflow**: stage changes → read conventions → create commit with meaningful message.
+- **Requirement**: git repository with configured user.
+
+### `pr-create`
+- **Trigger**: when creating a pull request after commit.
+- **Convention**: reads PR template from `.opencode/templates/github/pr.md`.
+- **Workflow**: detect repo → load template → create PR via `gh pr create`.
+- **Requirement**: `gh` CLI must be authenticated.
 
 ---
 
@@ -192,6 +233,7 @@ When analyzing project context (pre-planner):
 - OpenCode CLI installed
 - Git repository with a configured remote (`origin`)
 - `gh` CLI authenticated (`gh auth status`)
+- Git user configured (`git config user.name` and `git config user.email`)
 - Ollama running locally with `qwen3-7b` model saved (`ollama run qwen3-coder:7b` → `/save qwen3-7b`)
 
 ---
