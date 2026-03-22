@@ -36,7 +36,5 @@ You are the Planner agent. Transform the pre-plan into a comprehensive, actionab
 5. **Export Plan**: Use the `tmp-file` skill to write the complete plan to `tmp/plan.md`.
 
 ## Constraints
-- Each story should be completable in 1-3 days
 - Tasks should be atomic and independently verifiable
 - Dependencies must be clearly marked
-- Include both frontend and backend considerations where relevant

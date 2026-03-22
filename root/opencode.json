@@ -3,36 +3,36 @@
   "model": "minimax/MiniMax-M2.7",
   "agent": {
     "pre-planner": {
-      "model": "ollama-cloud/qwen3-coder-next"
+      "model": "ollama/qwen3-7b"
     },
     "organizer": {
-      "model": "ollama-cloud/qwen3-coder-next"
+      "model": "ollama/qwen3-7b"
     },
     "planner": {
       "model": "minimax/MiniMax-M2.7"
     },
     "implementation-planner": {
-      "model": "ollama-cloud/qwen3-coder-next"
+      "model": "ollama/qwen3-7b"
     },
     "pr-writer": {
-      "model": "ollama-cloud/qwen3-coder-next"
+      "model": "ollama/qwen3-7b"
     },
     "coder": {
       "model": "minimax/MiniMax-M2.7"
     }
   },
   "provider": {
-    "ollama-cloud": {
+    "ollama": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Ollama Local",
       "options": {
         "baseURL": "http://localhost:11434/v1"
       },
       "models": {
-        "qwen3-coder-next": {
+        "qwen3-7b": {
           "id": "qwen3-7b",
           "name": "Qwen3 Coder Ollama",
-          "tool_call": true
+          "tools": true
         }
       }
     }

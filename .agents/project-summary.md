@@ -66,7 +66,7 @@ flowchart TD
     U([User Request])
     PP["pre-planner\nreads context files in ./opencode/context/**\ngenerates Mermaid diagrams\nwrites ./tmp/pre-plan.md\nwaits for explicit user approval"]
     PL["planner\nreads ./tmp/pre-plan.md\nproduces Feature / Story / Task hierarchy\nwrites ./tmp/plan.md"]
-    OR["organizer\nreads ./tmp/plan.md\ninvokes gh-issue skill\ncreates GitHub issues sequentially\nreports total issues created with links"]
+    OR["organizer\nreads ./tmp/plan.md\ninvokes gh-issue skill\ncreates GitHub issues sequentially\nreports total issues created with links\ndeletes tmp/plan.md after completion"]
 
     U --> PP --> PL --> OR
 ```
@@ -83,7 +83,7 @@ flowchart TD
     C["coder (primary)\nreceives task, orchestrates workflow"]
     IP["implementation-planner\nreads task + .opencode/** + .agents/**\nexplores project files\nwrites tmp/implementation-plan.md"]
     C2["coder\nwrites code following implementation-plan.md"]
-    PR["pr-writer\nreads commit/PR conventions\ncommits with meaningful message\ncreates PR via gh"]
+    PR["pr-writer\nreads implementation-plan.md first\nexecutes git status/diff for verification\nreads commit/PR conventions\ncommits with meaningful message\ncreates PR via gh"]
 
     U --> C --> IP --> C2 --> PR
 ```
@@ -94,11 +94,14 @@ The `coder` agent is the primary agent users interact with for implementation ta
 
 ## Model Assignments
 
-| Agent       | Model                 | Reason                           |
-|---|---|---|
-| pre-planner | ollama/qwen3-7b       | Lightweight; context scan only   |
-| planner     | minimax/minimax-m2.7  | Needs strong structured output   |
-| organizer   | ollama/qwen3-7b       | Lightweight; template formatting |
+| Agent                | Model             | Reason                              |
+|----------------------|-------------------|--------------------------------------|
+| pre-planner          | ollama/qwen3-7b   | Lightweight; context scan only       |
+| planner              | minimax/minimax-m2.7 | Needs strong structured output    |
+| organizer            | ollama/qwen3-7b   | Lightweight; template formatting     |
+| implementation-planner| ollama/qwen3-7b   | Lightweight; follows implementation-plan.md |
+| pr-writer            | ollama/qwen3-7b   | Lightweight; commit formatting       |
+| coder                | minimax/minimax-m2.7 | Primary agent; orchestration     |
 
 Ollama provider is configured at `http://localhost:11434/v1` via `@ai-sdk/openai-compatible`.
 The model alias `qwen3-7b` maps to a saved Ollama session (`/save qwen3-7b`).

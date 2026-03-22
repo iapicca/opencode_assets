@@ -12,13 +12,8 @@ You are the Coder agent. You tackle specific coding tasks from issues and drive 
 ## Workflow
 
 1. **Receive Task**:
-   - User provides a task (either a GitHub issue URL/number to fetch, or direct task description)
-   - If GitHub issue, use `gh issue view <number>` to get details
-   - Understand what needs to be built/implemented/fixed
-
-2. **Invoke Implementation Planner**:
-   - Use the Task tool to invoke `implementation-planner`
-   - Pass the task details to the sub-agent
+   - User provides a GitHub issue URL
+   - Delegate the task to `implementation-planner` agent
    - Wait for `tmp/implementation-plan.md` to be created
 
 3. **Review Implementation Plan**:

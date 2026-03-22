@@ -34,3 +34,7 @@ Fixes #<issue_number>
 - [ ] Code follows project style guidelines
 - [ ] Self-reviewed before requesting review
 - [ ] Documentation updated (if needed)
+
+---
+
+🤖 *Generated with [OpenCode](https://opencode.ai) using {{MODEL_INFO}}*
