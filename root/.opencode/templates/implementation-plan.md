@@ -8,6 +8,17 @@ about: "Detailed implementation plan for a GitHub issue or PR follow-up"
 
 **Source:** [GitHub Issue URL] or [GitHub PR Comment URL]
 **Goal:** [What problem are we solving?]
+**Issue Type:** [Feature / Story / Task]
+
+---
+
+## Branch Strategy
+
+- **Working Branch:** `task/<issue-number>-<slug>` (branched from Parent Branch)
+- **Target Branch:** `story/<parent-issue-number>-<slug>` (where this PR will merge)
+- **Parent Branch:** `feature/<grandparent-issue-number>-<slug>` (where Working Branch is based)
+
+> **Note:** The `pr-writer` agent will create a PR with `--base <target-branch>`.
 
 ---
 

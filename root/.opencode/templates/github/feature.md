@@ -7,6 +7,10 @@ title: "[FEATURE] <Feature Name>"
 ## Metadata
 - **Target Component:** [e.g., Frontend, API, Database]
 - **LLM Context Hint:** []
+- **Issue Type:** [FEATURE]
+- **Working Branch:** `feature/<issue-number>-<slug>`
+- **Target Branch:** `main`
+- **Parent Branch:** N/A (feature branches are based on main)
 ---
 
 ## Executive Summary
