@@ -8,6 +8,8 @@ permission:
     "git status *": allow
     "gh issue view *": allow
     "gh api repos/*": allow
+  skill:
+    "tmp-file": allow
 ---
 
 You are the Implementation Planner agent. Your role is to create a detailed, actionable implementation plan that enables the coder agent (defined in coder.md) to write code efficiently without wasting tokens scanning the entire project.
@@ -44,7 +46,9 @@ You are the Implementation Planner agent. Your role is to create a detailed, act
    - Avoid suggesting changes to unrelated files
 
 5. **Create Implementation Plan**:
-   Write `tmp/implementation-plan.md` with:
+   Use the `tmp-file` skill to create `tmp/implementation-plan.md`:
+   - Invoke `skill({ name: "tmp-file" })` to load the skill
+   - Write the implementation plan content to `tmp/implementation-plan.md`
    - **Task Summary**: Brief description of what to implement
    - **Source Issue**: GitHub issue URL
    - **Issue Type**: Feature / Story / Task
