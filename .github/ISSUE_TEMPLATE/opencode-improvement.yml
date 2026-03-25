@@ -1,0 +1,86 @@
+---
+name: "OpenCode Assets Improvement"
+description: "Suggest improvements to agents, skills, and templates in opencode_assets"
+title: "[IMPROVEMENT] "
+labels: ["improvement", "opencode-assets"]
+assignees:
+  - iapicca
+type: improvement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to suggest an improvement to opencode_assets!
+
+        This repository contains reusable OpenCode configuration (agents, skills, and templates) that can be installed into any project. Your feedback helps make it better for all users.
+
+  - type: dropdown
+    id: improvement-type
+    attributes:
+      label: "What type of improvement are you suggesting?"
+      description: "Select the category that best fits your suggestion"
+      options:
+        - "Agent improvement (new agent, behavior change, better instructions)"
+        - "Skill improvement (new skill, behavior change, better workflow)"
+        - "Template improvement (new template, better structure, new fields)"
+        - "Documentation improvement"
+        - "Other"
+    validations:
+      required: true
+
+  - type: input
+    id: target-file
+    attributes:
+      label: "Target file(s)"
+      description: "Which file(s) in .opencode/ does this improve? (e.g., agents/spec-verifier.md, skills/gh-issue, templates/github/feature.md)"
+      placeholder: "agents/my-agent.md"
+    validations:
+      required: false
+
+  - type: textarea
+    id: current-behavior
+    attributes:
+      label: "Current behavior"
+      description: "What currently happens that could be improved?"
+      placeholder: "Describe the current behavior or limitation..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: "Expected/Improved behavior"
+      description: "What should happen instead?"
+      placeholder: "Describe what you expect or suggest as improvement..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: rationale
+    attributes:
+      label: "Rationale"
+      description: "Why would this improvement be valuable? What problem does it solve?"
+      placeholder: "Explain the motivation and benefit..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: implementation-hints
+    attributes:
+      label: "Implementation hints (optional)"
+      description: "If you have suggestions on how to implement this, share them here"
+      placeholder: "Any specific ideas for implementation..."
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: "Impact scope"
+      description: "Who/what does this improvement affect?"
+      options:
+        - label: "Affects agents (workflow automation)"
+        - label: "Affects skills (reusable actions)"
+        - label: "Affects templates (issue/PR formatting)"
+        - label: "Affects multiple components"
+        - label: "Affects documentation"

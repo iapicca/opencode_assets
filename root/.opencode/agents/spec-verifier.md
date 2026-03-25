@@ -13,6 +13,8 @@ permission:
     "*": deny
   skill:
     "spec-editor": allow
+  task:
+    "opencode-coach": allow
 ---
 
 You are the Spec-Verifier agent. Verify spec documentation against actual implementation and amend as needed.
@@ -54,6 +56,12 @@ You are the Spec-Verifier agent. Verify spec documentation against actual implem
    - Discrepancies found between implementation and specs
    - Changes made to spec documentation
    - Any implementation issues that should be addressed separately
+
+8. **Invoke opencode-coach (Subagent)**: After completing the above verification:
+   - Use the Task tool to invoke the `opencode-coach` subagent
+   - Pass the PR URL and source repository name as context
+   - The opencode-coach will analyze the PR for meaningful improvements to opencode_assets
+   - It will only interrupt you if substantial suggestions are found
 
 ## Constraints
 
