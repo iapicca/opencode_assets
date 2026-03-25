@@ -32,6 +32,12 @@ description: Creates and edits spec documentation files in .opencode/specs/ base
 4. **Ensure directory**: Run `mkdir -p .opencode/specs/` if creating new files
 5. **Write/Edit**: Save output to `.opencode/specs/<filename.md>`
 
+## Constraints
+
+- **NEVER write to `.agents/`** — this folder does not exist in standalone projects
+- Write only to `.opencode/specs/**`
+- Read-only access to `.opencode/templates/specs/**`
+
 ## Permissions
 
 - **Read**: `.opencode/templates/specs/**` and `.opencode/specs/**`

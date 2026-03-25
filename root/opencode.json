@@ -19,6 +19,12 @@
     },
     "coder": {
       "model": "minimax/MiniMax-M2.7"
+    },
+    "spec-generator": {
+      "model": "opencode/big-pickle"
+    },
+    "spec-verifier": {
+      "model": "minimax/MiniMax-M2.7"
     }
   }
 }
