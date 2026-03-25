@@ -108,9 +108,10 @@ flowchart TD
     U([User Request])
     PP["pre-planner\nreads context files in ./opencode/context/**\ngenerates Mermaid diagrams\nwrites ./tmp/pre-plan.md\nwaits for explicit user approval"]
     PL["planner\nreads ./tmp/pre-plan.md\nproduces Feature / Story / Task hierarchy\nwrites ./tmp/plan.md"]
+    SG["spec-generator\nreads ./tmp/plan.md\ncreates/updates spec docs in .opencode/specs/\nDOES NOT delete tmp/plan.md"]
     OR["organizer\nreads ./tmp/plan.md\ninvokes gh-issue skill\ncreates GitHub issues sequentially\nreports total issues created with links\ndeletes tmp/plan.md after completion"]
 
-    U --> PP --> PL --> OR
+    U --> PP --> PL --> SG --> OR
 ```
 
 All agents are `mode: subagent`. They are invoked by the primary agent via the Task tool or via `@mention`.
