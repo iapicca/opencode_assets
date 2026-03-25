@@ -166,7 +166,7 @@ The model `big-pickle` is a free stealth model provided by OpenCode Zen.
 
 ### `git-commit`
 - **Trigger**: when committing changes with a meaningful message.
-- **Convention**: follows commit message format in `.opencode/templates/commit.md` or uses conventional commits.
+- **Convention**: follows commit message format in `.opencode/templates/github/commit.md` or uses conventional commits.
 - **Workflow**: stage changes → read conventions → create commit with meaningful message.
 - **Requirement**: git repository with configured user.
 

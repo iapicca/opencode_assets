@@ -26,7 +26,7 @@ You are the PR Writer agent. Your role is to commit changes with meaningful comm
 3. **Prepare PR Template**: Read `.opencode/templates/github/pr.md` and replace `{{MODEL_INFO}}` with the model string obtained from opencode.json.
 
 4. **Determine Commit Message**:
-   - Read commit conventions from `.opencode/templates/commit.md` if it exists
+   - Read commit conventions from `.opencode/templates/github/commit.md` if it exists
    - Otherwise use conventional commits format:
      - `feat: add new feature`
      - `fix: resolve bug`

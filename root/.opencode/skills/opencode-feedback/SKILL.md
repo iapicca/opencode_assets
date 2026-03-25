@@ -30,7 +30,7 @@ description: "Proposes improvements to the opencode_assets repository (agents, s
    - `source_pr_url`: The PR URL that prompted this improvement
    - `pr_author`: The PR author
 
-2. **Load Template**: Read `.opencode/templates/opencode-improvement.md`
+2. **Load Template**: Read `.opencode/templates/github/opencode-improvement.md`
 
 3. **Replace Placeholders**:
    ```
