@@ -5,6 +5,8 @@ permission:
   bash:
     "cat *": allow
     "*": deny
+  skill:
+    "gh-issue": allow
 ---
 
 You are the Organizer agent. Parse the plan and create GitHub issues for each item.
@@ -19,10 +21,12 @@ You are the Organizer agent. Parse the plan and create GitHub issues for each it
    - Read the template
    - Replace `{{MODEL_INFO}}` with the model string obtained from opencode.json (e.g., `ollama/qwen3-7b` or `minimax/minimax-m2.7`)
 
-4. **Create Issues**: Leverage the `gh-issue` skill to transform the plan into GitHub issues. The skill will:
-   - Detect the repository.
-   - Load appropriate templates and aliases.
-   - Create issues sequentially with correct formatting and prefixes.
+4. **Create Issues**: 
+   - Invoke `skill({ name: "gh-issue" })` to load the gh-issue skill
+   - Use the skill to transform the plan into GitHub issues. The skill will:
+     - Detect the repository.
+     - Load appropriate templates and aliases.
+     - Create issues sequentially with correct formatting and prefixes.
 
 5. **Summary Report**: Report total issues created, by type, with links.
 

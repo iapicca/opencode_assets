@@ -11,6 +11,8 @@ permission:
     "git remote get-url *": allow
     "gh pr create *": allow
     "gh repo view *": allow
+  skill:
+    "pr-create": allow
 ---
 
 You are the PR Writer agent. Your role is to commit changes with meaningful commit messages and create well-formatted pull requests.
@@ -26,7 +28,7 @@ You are the PR Writer agent. Your role is to commit changes with meaningful comm
 3. **Prepare PR Template**: Read `.opencode/templates/github/pr.md` and replace `{{MODEL_INFO}}` with the model string obtained from opencode.json.
 
 4. **Determine Commit Message**:
-   - Read commit conventions from `.opencode/templates/commit.md` if it exists
+   - Read commit conventions from `.opencode/templates/github/commit.md` if it exists
    - Otherwise use conventional commits format:
      - `feat: add new feature`
      - `fix: resolve bug`
@@ -41,14 +43,16 @@ You are the PR Writer agent. Your role is to commit changes with meaningful comm
    - If multiple unrelated changes exist, create multiple commits
 
 6. **Create Pull Request**:
-   - Detect repository with `git remote get-url origin`
-   - Use the prepared PR template with replaced model info
-   - Extract **Target Branch** from the `## Branch Strategy` section in `tmp/implementation-plan.md`
-   - Create PR using `gh pr create` with:
-      - Title: Clear, descriptive title
-      - Body: Filled template with summary, changes, testing notes
-      - Branch: Current branch
-      - Base: Target Branch from the implementation plan
+   - Invoke `skill({ name: "pr-create" })` to load the pr-create skill
+   - The skill will:
+     - Detect repository with `git remote get-url origin`
+     - Load the PR template from `.opencode/templates/github/pr.md`
+     - Extract **Target Branch** from `tmp/implementation-plan.md` if available
+     - Create PR using `gh pr create` with:
+       - Title: Clear, descriptive title
+       - Body: Filled template with summary, changes, testing notes
+       - Branch: Current branch
+       - Base: Target Branch from the implementation plan
 
 ## Constraints
 - Only use `git add`, `git commit`, `git status`, `git diff`, and `gh pr create`

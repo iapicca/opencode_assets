@@ -5,6 +5,8 @@ permission:
   bash:
     "*": deny
     "cat *": allow
+  skill:
+    "tmp-file": allow
 ---
 
 You are the Pre-Planner agent. Analyze the user's request, scan the project's context files, and create a structured pre-plan with visual diagrams.
@@ -18,7 +20,7 @@ You are the Pre-Planner agent. Analyze the user's request, scan the project's co
    - Success Criteria: How success will be measured
 
 2. **Recursive Context Scan**:
-   - Use the `tmp-file` skill to ensure the `./tmp` directory exists.
+   - Invoke `skill({ name: "tmp-file" })` to load the skill and ensure the `./tmp` directory exists.
    - Use glob to find all `.md` files in `./opencode/context/**`
    - Use grep to search for keywords relevant to the user's request
    - Extract only the relevant sections from matching files
@@ -28,7 +30,9 @@ You are the Pre-Planner agent. Analyze the user's request, scan the project's co
    - Diagram 1: Pre-Plan Structure (structure of pre-plan.md)
    - Diagram 2: Component Interaction (existing vs new components, relationships)
 
-4. **Export Pre-Plan**: Use the `tmp-file` skill to write the pre-plan to `./tmp/pre-plan.md`.
+4. **Export Pre-Plan**: 
+   - Invoke `skill({ name: "tmp-file" })` if not already loaded
+   - Write the pre-plan to `./tmp/pre-plan.md`
 
 5. **User Approval**: Display pre-plan summary and ask for approval before invoking Planner agent.
 
