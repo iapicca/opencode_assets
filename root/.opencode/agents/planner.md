@@ -1,6 +1,6 @@
 ---
 description: Creates detailed agile-style plans from pre-plan.md
-mode: subagent
+mode: primary
 permission:
   bash: deny
 ---
