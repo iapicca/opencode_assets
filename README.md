@@ -59,6 +59,6 @@ flowchart TD
 
 ```bash
 git clone https://github.com/iapicca/opencode_assets /tmp/opencode_assets && \
-cp -R /tmp/opencode_assets/root . && \
+cp -R /tmp/opencode_assets/root/. . && \
 rm -rf /tmp/opencode_assets
 ```
