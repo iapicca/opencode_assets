@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "minimax/MiniMax-M2.7",
+  "model": "opencode-go/minimax-m2.7",
   "agent": {
     "pre-planner": {
       "model": "opencode/big-pickle"
@@ -9,7 +9,7 @@
       "model": "opencode/big-pickle"
     },
     "planner": {
-      "model": "minimax/MiniMax-M2.7"
+      "model": "opencode-go/minimax-m2.7"
     },
     "implementation-planner": {
       "model": "opencode/big-pickle"
@@ -18,13 +18,13 @@
       "model": "opencode/big-pickle"
     },
     "coder": {
-      "model": "minimax/MiniMax-M2.7"
+      "model": "opencode-go/minimax-m2.7"
     },
     "spec-generator": {
       "model": "opencode/big-pickle"
     },
     "spec-verifier": {
-      "model": "minimax/MiniMax-M2.7"
+      "model": "opencode-go/minimax-m2.7"
     }
   }
 }
