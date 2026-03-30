@@ -1,0 +1,23 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "opencode-go/minimax-m2.7",
+  "agent": {
+    "agents-planner": {
+      "description": "Researches OpenCode documentation and collects best practices for agents, skills, and configuration",
+      "mode": "primary",
+      "prompt": "{file:.opencode/agents/agents-planner.md}",
+      "permission": {
+        "edit": "deny",
+        "bash": "deny"
+      }
+    },
+    "agents-builder": {
+      "description": "Creates and edits OpenCode agent and skill markdown files following official documentation standards",
+      "mode": "primary",
+      "prompt": "{file:.opencode/agents/agents-builder.md}",
+      "permission": {
+        "edit": "allow"
+      }
+    }
+  }
+}
