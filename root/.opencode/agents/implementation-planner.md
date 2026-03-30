@@ -3,7 +3,10 @@ description: Creates detailed implementation plans for coding tasks. Only create
 mode: subagent
 permission:
   bash:
-    "mkdir -p *": allow
+    "mkdir -p ./tmp": allow
+    "touch tmp/implementation-plan.md": allow
+    "echo \"\" > tmp/implementation-plan.md": allow
+    "echo \"\" >> tmp/implementation-plan.md": allow
   skill:
     "tmp-file": allow
 ---

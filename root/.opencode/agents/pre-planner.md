@@ -3,7 +3,10 @@ description: Analyzes user requests, scans project context, and generates pre-pl
 mode: subagent
 permission:
   bash:
-    "mkdir -p *": allow
+    "mkdir -p ./tmp": allow
+    "touch tmp/pre-plan.md": allow
+    "echo \"\" > tmp/pre-plan.md": allow
+    "echo \"\" >> tmp/pre-plan.md": allow
   skill:
     "tmp-file": allow
 ---

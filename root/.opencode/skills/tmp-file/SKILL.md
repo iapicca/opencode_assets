@@ -9,7 +9,26 @@ description: Creates .md files in ./tmp folder.
 - Create and edit markdown (`.md`) files inside `./tmp/` only.
 - Only create files explicitly named in the agent's description (e.g., `pre-plan.md`, `plan.md`, `implementation-plan.md`).
 
-> **Permissions**: Bash: `mkdir -p *` (to create ./tmp directory) | Tools: `write` restricted to `./tmp/` for agent-specified filenames only
+> **Permissions**: While this skill's description is broad, permissions are restricted to the specific files named in each agent's description. Each agent that uses this skill declares only the permissions for the specific file it needs.
+
+## Permissions Summary
+
+| Command | Scope | Purpose |
+|---------|-------|---------|
+| `mkdir -p ./tmp` | `./tmp` | Create the tmp directory |
+| `touch tmp/<file>.md` | Agent-specified file | Create empty file |
+| `echo "" > tmp/<file>.md` | Agent-specified file | Write/overwrite file |
+| `echo "" >> tmp/<file>.md` | Agent-specified file | Append to file |
+
+## File Naming Conventions
+
+Each agent declares the specific file(s) it works with:
+
+| Agent | File |
+|-------|------|
+| pre-planner | `tmp/pre-plan.md` |
+| planner | `tmp/plan.md` |
+| implementation-planner | `tmp/implementation-plan.md` |
 
 ## When to use me
 
@@ -26,5 +45,5 @@ description: Creates .md files in ./tmp folder.
 
 - Only write to `./tmp/` folder inside `.opencode`
 - Only create files explicitly named in the agent's description
-- Only use `mkdir -p *` for directory creation
+- Only use `mkdir -p ./tmp` for directory creation
 - Do not run arbitrary bash commands
