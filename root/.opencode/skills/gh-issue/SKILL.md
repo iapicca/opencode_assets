@@ -10,7 +10,7 @@ description: Creates GitHub issues using the gh cli and possibly leveraging temp
 - Create GitHub issues sequentially using the `gh` CLI.
 - Format issue titles with appropriate prefixes.
 
-> **Note**: Only `gh *` commands should be used. Do not run arbitrary bash commands.
+> **Permissions**: Bash: `gh issue *`, `git remote get-url *`
 
 ## When to use me
 

@@ -3,8 +3,8 @@ description: Creates GitHub issues from plan.md using gh cli
 mode: subagent
 permission:
   bash:
-    "cat *": allow
-    "*": deny
+    "gh issue *": allow
+    "git remote get-url *": allow
   skill:
     "gh-issue": allow
 ---

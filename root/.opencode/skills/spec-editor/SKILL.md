@@ -38,8 +38,19 @@ description: Creates and edits spec documentation files in .opencode/specs/ base
 - Write only to `.opencode/specs/**`
 - Read-only access to `.opencode/templates/specs/**`
 
+## Permissions Summary
+
+| Command | Scope | Purpose |
+|---------|-------|---------|
+| `mkdir -p .opencode/specs/` | `.opencode/specs/` | Create the specs directory |
+| `touch .opencode/specs/*.md` | `.opencode/specs/*.md` | Create spec files |
+| `echo "" > .opencode/specs/*.md` | `.opencode/specs/*.md` | Write/overwrite spec file |
+| `echo "" >> .opencode/specs/*.md` | `.opencode/specs/*.md` | Append to spec file |
+
+> **Note**: Permissions are restricted to files in `.opencode/specs/`. Each agent declares permissions for the specific files it needs.
+
 ## Permissions
 
 - **Read**: `.opencode/templates/specs/**` and `.opencode/specs/**`
-- **Write**: `.opencode/specs/**` only
-- **Bash**: `mkdir -p .opencode/specs/` only
+- **Write**: `.opencode/specs/*.md` only
+- **Bash**: `mkdir -p .opencode/specs/`, `touch .opencode/specs/*.md`, `echo "" > .opencode/specs/*.md`, `echo "" >> .opencode/specs/*.md`

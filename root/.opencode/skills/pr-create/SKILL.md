@@ -9,6 +9,8 @@ description: Creates pull requests using gh CLI with project templates
 - Loads the PR template from `.opencode/templates/github/pr.md`
 - Creates a pull request using `gh pr create`
 
+> **Permissions**: Bash: `gh pr create *`, `gh repo view *`, `git remote get-url *`
+
 ## When to use me
 
 - After committing changes and ready to create a PR

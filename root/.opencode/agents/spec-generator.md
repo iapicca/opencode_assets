@@ -4,10 +4,11 @@ mode: subagent
 permission:
   bash:
     "mkdir -p .opencode/specs/": allow
-    "*": deny
+    "touch .opencode/specs/*.md": allow
+    "echo \"\" > .opencode/specs/*.md": allow
+    "echo \"\" >> .opencode/specs/*.md": allow
   edit:
-    ".opencode/specs/**": allow
-    "*": deny
+    ".opencode/specs/*.md": allow
   skill:
     "spec-editor": allow
 ---
