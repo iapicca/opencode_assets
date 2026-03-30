@@ -1,8 +1,9 @@
 ---
-description: Creates detailed agile-style plans from pre-plan.md
+description: Creates detailed agile-style plans from pre-plan.md. Only creates `./tmp/plan.md`.
 mode: primary
 permission:
-  bash: deny
+  bash:
+    "mkdir -p *": allow
   skill:
     "tmp-file": allow
 ---

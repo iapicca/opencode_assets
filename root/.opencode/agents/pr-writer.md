@@ -3,7 +3,6 @@ description: Commits changes with meaningful messages and creates pull requests
 mode: subagent
 permission:
   bash:
-    "*": deny
     "git add *": allow
     "git commit *": allow
     "git status *": allow

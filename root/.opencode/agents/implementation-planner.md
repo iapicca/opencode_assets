@@ -1,13 +1,9 @@
 ---
-description: Creates detailed implementation plans for coding tasks
+description: Creates detailed implementation plans for coding tasks. Only creates `./tmp/implementation-plan.md`.
 mode: subagent
 permission:
   bash:
-    "*": deny
-    "git remote get-url *": allow
-    "git status *": allow
-    "gh issue view *": allow
-    "gh api repos/*": allow
+    "mkdir -p *": allow
   skill:
     "tmp-file": allow
 ---

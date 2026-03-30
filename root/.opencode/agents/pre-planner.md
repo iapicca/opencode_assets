@@ -1,10 +1,9 @@
 ---
-description: Analyzes user requests, scans project context, and generates pre-plans with visual diagrams
+description: Analyzes user requests, scans project context, and generates pre-plans with visual diagrams. Only creates `./tmp/pre-plan.md`.
 mode: subagent
 permission:
   bash:
-    "*": deny
-    "cat *": allow
+    "mkdir -p *": allow
   skill:
     "tmp-file": allow
 ---
