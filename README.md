@@ -1,53 +1,41 @@
 ## What's this?
 
-Personal [OpenCode](https://opencode.ai) workflow — a multi-agent system that transforms GitHub issues into implementation plans and pull requests through a structured, agile-inspired pipeline.
+[OpenCode](https://opencode.ai) bootstrap template — a multi-agent system for transforming GitHub issues into implementation plans and pull requests through an agile-inspired pipeline.
 
 ## Architecture
 
 ```mermaid
 flowchart TD
-    Request([User Request]) --> PrePlanner
-    
-    PrePlanner -->|pre-plan.md| PrePlanApproval{User Approves?}
-    PrePlanApproval -->|no| PrePlanner
-    PrePlanApproval -->|yes| Planner
-    
-    Planner -->|plan.md| SpecGen[Spec-Generator]
-    Planner -->|plan.md| Organizer
-    
-    SpecGen -->|specs/*.md| Organizer
-    Organizer -->|GitHub Issues| Coder
-    
-    Coder -->|tmp/implementation-plan.md| ImplPlanner[Implementation-Planner]
+    Request([User Request]) --> PrePlanner[pre-planner]
+    PrePlanner -->|pre-plan.md| Planner[planner]
+    Planner -->|plan.md| SpecGen[spec-generator]
+    Planner -->|plan.md| Organizer[organizer]
+    Organizer -->|GitHub Issues| Coder[coder]
+    Coder -->|tmp/implementation-plan.md| ImplPlanner[implementation-planner]
     ImplPlanner --> Coder
-    Coder --> PRWriter[PR-Writer]
-    
-    PRWriter -->|PR Merged| SpecVerifier[Spec-Verifier]
+    Coder --> PRWriter[pr-writer]
+    PRWriter -->|PR Merged| SpecVerifier[spec-verifier]
     SpecVerifier --> Coach[opencode-coach]
-    Coach -->|improvements| Feedback[opencode-feedback]
-    
-    style Request fill:#e1f5fe
-    style PrePlanApproval fill:#fff3e0
 ```
 
 ## Agent Roles
 
 | Agent | Role |
 |-------|------|
-| **pre-planner** | Analyzes request, scans context, generates pre-plan with diagrams |
+| **pre-planner** | Analyzes request, generates pre-plan with diagrams |
 | **planner** | Converts pre-plan into Feature → Story → Task hierarchy |
 | **spec-generator** | Creates/updates spec docs from plan |
 | **organizer** | Creates GitHub issues from plan |
 | **implementation-planner** | Creates detailed implementation plans for issues |
-| **coder** | Implements code from implementation plan |
+| **coder** | Implements code from issue |
 | **pr-writer** | Commits changes and creates PRs |
 | **spec-verifier** | Verifies specs against merged PR |
 | **opencode-coach** | Proposes improvements to this toolkit |
 
 ## Models
 
-- `minimax/MiniMax-M2.7` — primary model for planning and coding
-- `opencode/big-pickle` — used for resource-intensive subagents
+- `minimax/MiniMax-M2.7` — primary model
+- `opencode/big-pickle` — for resource-intensive tasks
 
 ## Requirements
 
