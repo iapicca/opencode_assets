@@ -6,11 +6,12 @@ permission:
     "gh pr view *": allow
     "gh issue list *": allow
     "git diff *": allow
-    "*": deny
+    "mkdir -p .opencode/specs/": allow
+    "touch .opencode/specs/*.md": allow
+    "echo \"\" > .opencode/specs/*.md": allow
+    "echo \"\" >> .opencode/specs/*.md": allow
   edit:
-    ".opencode/specs/**": allow
-    ".agents/**": deny
-    "*": deny
+    ".opencode/specs/*.md": allow
   skill:
     "spec-editor": allow
   task:
