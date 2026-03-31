@@ -5,17 +5,25 @@
 ## Architecture
 
 ```mermaid
-flowchart TD
-    Request([User Request]) --> PrePlanner[pre-planner]
-    PrePlanner -->|pre-plan.md| Planner[planner]
-    Planner -->|plan.md| SpecGen[spec-generator]
-    Planner -->|plan.md| Organizer[organizer]
-    Organizer -->|GitHub Issues| Coder[coder]
-    Coder -->|tmp/implementation-plan.md| ImplPlanner[implementation-planner]
-    ImplPlanner --> Coder
-    Coder --> PRWriter[pr-writer]
-    PRWriter -->|PR Merged| SpecVerifier[spec-verifier]
-    SpecVerifier --> Coach[opencode-coach]
+flowchart TB
+    subgraph "Planning Flow"
+        User([User Request]) -->|Issue URL| pre-planner[pre-planner]
+        pre-planner -->|tmp/pre-plan.md| planner[planner]
+        planner -->|tmp/plan.md| spec-generator[spec-generator]
+        planner -->|tmp/plan.md| organizer[organizer]
+    end
+    
+    subgraph "Implementation Flow"
+        User -->|Issue URL| coder[coder]
+        coder -->|delegate| implementation-planner[implementation-planner]
+        implementation-planner -->|tmp/implementation-plan.md| coder
+        coder -->|invoke| pr-writer[pr-writer]
+    end
+    
+    subgraph "Verification Flow"
+        User -->|PR URL| spec-verifier[spec-verifier]
+        spec-verifier -->|invoke| opencode-coach[opencode-coach]
+    end
 ```
 
 ## Agent Roles
