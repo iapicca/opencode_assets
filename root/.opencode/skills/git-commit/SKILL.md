@@ -1,4 +1,5 @@
 ---
+name: git-commit
 description: Creates meaningful git commits following project conventions
 ---
 
