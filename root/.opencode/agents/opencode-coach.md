@@ -1,6 +1,7 @@
 ---
 description: "Analyzes closed PRs and proposes meaningful improvements to opencode_assets (agents, skills, templates)"
 mode: subagent
+hidden: true
 permission:
   bash:
     "gh pr view *": allow
