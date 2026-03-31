@@ -368,7 +368,6 @@ skill:
 - `tmp/implementation-plan.md` (to understand intended changes)
 - Actual changes via `git status` and `git diff`
 - PR template from `.opencode/templates/github/pr.md`
-- Commit conventions from `.opencode/templates/github/commit.md`
 
 **Outputs:**
 - Git commit(s) with conventional commits format
@@ -378,15 +377,10 @@ skill:
 - Invoked by coder after implementation is complete
 
 **Commit Message Format:**
-```
-<type>: <short summary>
-
-<optional body with more detail>
-
-<optional footer with issue refs>
-```
-
-Types: `feat`, `fix`, `docs`, `refactor`, `test`, `chore`
+Follows the [Conventional Commits v1.0.0 specification](https://www.conventionalcommits.org/en/v1.0.0/#specification):
+- Format: `<type>: <short summary>`
+- Types: `feat`, `fix`, `docs`, `refactor`, `test`, `chore`
+- Be concise (under 50 chars) and describe the WHY, not just the WHAT
 
 **Permissions:**
 ```yaml
@@ -540,7 +534,6 @@ skill:
 |----------|---------|
 | `implementation-plan.md` | Detailed implementation plan for issues |
 | `github/pr.md` | Pull request template |
-| `github/commit.md` | Commit message conventions |
 
 ---
 

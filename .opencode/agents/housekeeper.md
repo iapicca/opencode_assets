@@ -5,6 +5,7 @@ permission:
   edit:
     ".opencode/agents.md": allow
     "README.md": allow
+    "root/.opencode/**": deny
   bash:
     "ls root/.opencode/agents/*.md": allow
     "ls root/.opencode/skills/*/SKILL.md": allow
@@ -31,7 +32,9 @@ Your role is to ensure `.opencode/agents.md` and `./README.md` stay in sync with
 
 ## Critical Rules
 
-- **Monitor `./root/` only** - ignore changes in `.opencode/agents/` and `.opencode/skills/`
+- **READ from `./root/` only** - `./root/.opencode/` is the SOURCE template you scan for agent changes
+- **WRITE to `.opencode/` only** - you MUST update `.opencode/agents.md` (project-level documentation)
+- **NEVER edit or create files inside `./root/`** - this directory is read-only source template
 - **Preserve README.md installation section** - never modify the Requirements or Installation sections
 - **Focus on brevity** - keep both files concise
 - **Sync agent list** - whenever `./root/` agents change, both files must reflect the same list
