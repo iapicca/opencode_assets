@@ -33,7 +33,7 @@ title: "[PR] <PR Title>"
 
 <!-- Reference any related issues -->
 
-Fixes #<issue_number>
+fix #<issue_url>
 
 ## Checklist
 
